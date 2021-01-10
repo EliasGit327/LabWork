@@ -1,5 +1,4 @@
-var N = 3;
-var m = [
+var mg = [
     // [1, 2, -4, 3],
     // [2, -3, 3, -1],
     // [3, 2, -2, 5]
@@ -16,11 +15,11 @@ var m = [
     [-1.32, 0.57, 1.29, 5.77, 14.25]
 ];
 var colCleaning = function (col) {
-    m.forEach(function (e, line) {
-        var divider = m[line][col];
-        m[line].forEach(function (e, i) { return m[line][i] = m[line][i] / divider; });
-        if (m[line][col] < 0) {
-            m[line].forEach(function (e, i) { return m[line][i] * -1; });
+    mg.forEach(function (e, line) {
+        var divider = mg[line][col];
+        mg[line].forEach(function (e, i) { return mg[line][i] = mg[line][i] / divider; });
+        if (mg[line][col] < 0) {
+            mg[line].forEach(function (e, i) { return mg[line][i] * -1; });
         }
     });
     // От всех строк выше отнимает текущую, чтобы занулить столбец выше
@@ -28,33 +27,33 @@ var colCleaning = function (col) {
         subtractLine(i, col);
     }
     // От всех строк ниже отнимает текущую, чтобы занулить столбец ниже
-    for (var i = col + 1; i < m.length; i++) {
+    for (var i = col + 1; i < mg.length; i++) {
         subtractLine(i, col);
     }
 };
 // Отнимает из стокри под номером fLine строку под номером sLine
 var subtractLine = function (fLine, sLine) {
-    m[fLine].forEach(function (e, i) { return m[fLine][i] -= m[sLine][i]; });
+    mg[fLine].forEach(function (e, i) { return mg[fLine][i] -= mg[sLine][i]; });
 };
 // Делит всю строку на число по индексу строки, чтобы получить выражение "1 * x = значение"
 var toOne = function (line) {
-    var divider = m[line][line];
-    m[line].forEach(function (e, i) { return m[line][i] = m[line][i] / divider; });
+    var divider = mg[line][line];
+    mg[line].forEach(function (e, i) { return mg[line][i] = mg[line][i] / divider; });
 };
 // Делает ответ читаемым
 var beautifyAnswer = function () {
-    m.forEach(function (line, lineIndex) {
+    mg.forEach(function (line, lineIndex) {
         toOne(lineIndex);
         // Округляем значения чтобы не иметь длинных чисел
-        m[lineIndex].forEach(function (col, colIndex) {
-            var num = Number(m[lineIndex][colIndex]); // The Number() only visualizes the type and is not needed
+        mg[lineIndex].forEach(function (col, colIndex) {
+            var num = Number(mg[lineIndex][colIndex]); // The Number() only visualizes the type and is not needed
             var roundedStr = num.toFixed(15);
             var rounded = Number(roundedStr);
-            m[lineIndex][colIndex] = rounded;
+            mg[lineIndex][colIndex] = rounded;
         });
     });
 };
-m.forEach(function (e, i) { return colCleaning(i); });
+mg.forEach(function (e, i) { return colCleaning(i); });
 beautifyAnswer();
-m.forEach(function (e) { return console.log(e); });
+mg.forEach(function (e) { return console.log(e); });
 //# sourceMappingURL=gauss.js.map

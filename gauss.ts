@@ -1,6 +1,4 @@
-const N = 3;
-
-const m: number[][] = [
+const mg: number[][] = [
   // [1, 2, -4, 3],
   // [2, -3, 3, -1],
   // [3, 2, -2, 5]
@@ -21,12 +19,12 @@ const m: number[][] = [
 ];
 
 const colCleaning = (col: number) => {
-  m.forEach((e, line) => {
-    const divider = m[line][col];
-    m[line].forEach((e, i) => m[line][i] = m[line][i] / divider);
+  mg.forEach((e, line) => {
+    const divider = mg[line][col];
+    mg[line].forEach((e, i) => mg[line][i] = mg[line][i] / divider);
 
-    if (m[line][col] < 0) {
-      m[line].forEach((e, i) => m[line][i] * -1);
+    if (mg[line][col] < 0) {
+      mg[line].forEach((e, i) => mg[line][i] * -1);
     }
   });
 
@@ -36,38 +34,38 @@ const colCleaning = (col: number) => {
   }
 
   // От всех строк ниже отнимает текущую, чтобы занулить столбец ниже
-  for (let i = col + 1; i < m.length; i++) {
+  for (let i = col + 1; i < mg.length; i++) {
     subtractLine(i, col);
   }
 };
 
 // Отнимает из стокри под номером fLine строку под номером sLine
 const subtractLine = (fLine: number, sLine: number) => {
-  m[fLine].forEach((e, i) => m[fLine][i] -= m[sLine][i]);
+  mg[fLine].forEach((e, i) => mg[fLine][i] -= mg[sLine][i]);
 };
 
 // Делит всю строку на число по индексу строки, чтобы получить выражение "1 * x = значение"
 const toOne = (line: number) => {
-  const divider = m[line][line];
-  m[line].forEach((e, i) => m[line][i] = m[line][i] / divider);
+  const divider = mg[line][line];
+  mg[line].forEach((e, i) => mg[line][i] = mg[line][i] / divider);
 }
 
 // Делает ответ читаемым
 const beautifyAnswer = () => {
-  m.forEach((line, lineIndex) => {
+  mg.forEach((line, lineIndex) => {
 
     toOne(lineIndex);
 
     // Округляем значения чтобы не иметь длинных чисел
-    m[lineIndex].forEach((col, colIndex) => {
-      const num = Number(m[lineIndex][colIndex]) // The Number() only visualizes the type and is not needed
+    mg[lineIndex].forEach((col, colIndex) => {
+      const num = Number(mg[lineIndex][colIndex]) // The Number() only visualizes the type and is not needed
       const roundedStr = num.toFixed(15);
       const rounded = Number(roundedStr);
-      m[lineIndex][colIndex] = rounded
+      mg[lineIndex][colIndex] = rounded
     });
   });
 };
 
-m.forEach((e, i) => colCleaning(i));
+mg.forEach((e, i) => colCleaning(i));
 beautifyAnswer();
-m.forEach(e => console.log(e));
+mg.forEach(e => console.log(e));
