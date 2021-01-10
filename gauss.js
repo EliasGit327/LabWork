@@ -48,8 +48,7 @@ var beautifyAnswer = function () {
         mg[lineIndex].forEach(function (col, colIndex) {
             var num = Number(mg[lineIndex][colIndex]); // The Number() only visualizes the type and is not needed
             var roundedStr = num.toFixed(15);
-            var rounded = Number(roundedStr);
-            mg[lineIndex][colIndex] = rounded;
+            mg[lineIndex][colIndex] = Number(roundedStr);
         });
     });
 };

@@ -30,7 +30,7 @@ const changePos = () => {
 
 const prepare = (): number[] => {
   const newAnswer = [];
-  mj.forEach((line, lineIndex) => {
+  mj.forEach((line) => {
     newAnswer.push(line[line.length - 1]);
   });
   answer = newAnswer;

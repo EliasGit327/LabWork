@@ -7,8 +7,9 @@
   "exclude": [
     "node_modules"
   ],
-    "files": [
-        "gauss.ts",
-        "jacobi.ts"
-    ]
+  "files": [
+    "gauss.ts",
+    "jacobi.ts",
+    "gauss-zeidel.ts"
+  ]
 }
