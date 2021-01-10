@@ -1,14 +1,26 @@
-const m: number[][] = [
-  // [1, 2, -4, 3],
-  // [2, -3, 3, -1],
-  // [3, 2, -2, 5]
+const N = 3;
 
-  [3, 2, 1, 1, -2],
-  [1, -1, 4, -1, -1],
-  [-2, -2, -3, 1, 9],
-  [1, 5, -1, 2, 4]
+const m: number[][] = [
+  [1, 2, -4, 3],
+  [2, -3, 3, -1],
+  [3, 2, -2, 5]
+
+  // [3, 2, 1, 1, -2],
+  // [1, -1, 4, -1, -1],
+  // [-2, -2, -3, 1, 9],
+  // [1, 5, -1, 2, 4]
+
+  // [1, -1, 0, -2],
+  // [2, 1, 1, 2],
+  // [3, -1, 2, 2]
+
+  // [5.18 + 0.1*N, 1.12, 0.95, 1.32, 10.83 + 0.5*N],
+  // [1.12, 4.82+0.2*N, 2.12, 0.57, 10.91+1.5*N],
+  // [0.95, 2.12, 6.13+0.3*N, 1.29, 11.57+2.5*N],
+  // [-1.32, 0.57, 1.29, 4.57+0.4*N, 11.25+N]
 ];
 
+// m.forEach(e => console.log(e));
 
 const colCleaning = (col: number) => {
   m.forEach((e, line) => {
@@ -50,7 +62,10 @@ const beautifyAnswer = () => {
 
     // Округляем значения чтобы не иметь длинных чисел
     m[lineIndex].forEach((col, colIndex) => {
-      m[lineIndex][colIndex] = Math.round(m[lineIndex][colIndex]);
+      const num = Number(m[lineIndex][colIndex]) // The Number() only visualizes the type and is not needed
+      const roundedStr = num.toFixed(15);
+      const rounded = Number(roundedStr);
+      m[lineIndex][colIndex] = rounded
     });
   });
 };
